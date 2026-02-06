@@ -177,7 +177,7 @@
     <EmbeddedResource Include="Resources\UI.ModIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CommandHelp\CommandHelp\CommandHelp\CommandHelp.csproj">
+    <ProjectReference Include="..\CommandHelp\CommandHelp\CommandHelp\CommandHelp.csproj">
       <Project>{28032285-ba86-4a99-88c3-82a8483dc05c}</Project>
       <Name>CommandHelp</Name>
     </ProjectReference>

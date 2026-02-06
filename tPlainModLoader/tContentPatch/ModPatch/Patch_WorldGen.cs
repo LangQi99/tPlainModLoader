@@ -32,7 +32,7 @@ namespace tContentPatch.ModPatch
         {
             mod.ForTry(item => item.UpdateWorldPostfix());
         }
-        }
+
 
         [HarmonyPatch("KillTile")]
         [HarmonyPostfix]
