@@ -23,5 +23,9 @@ namespace tContentPatch
         /// 在客户端不会调用, <see cref="Main.netMode"/>=1
         /// </summary>
         public virtual void UpdateWorldPostfix() { }
+        /// <summary>
+        /// KillTile Hook
+        /// </summary>
+        public virtual void KillTile(int i, int j, bool fail, bool effectOnly, bool noItem) { }
     }
 }

@@ -32,5 +32,13 @@ namespace tContentPatch.ModPatch
         {
             mod.ForTry(item => item.UpdateWorldPostfix());
         }
+        }
+
+        [HarmonyPatch("KillTile")]
+        [HarmonyPostfix]
+        public static void KillTilePostfix(int i, int j, bool fail, bool effectOnly, bool noItem)
+        {
+            mod.ForTry(item => item.KillTile(i, j, fail, effectOnly, noItem));
+        }
     }
 }

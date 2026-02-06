@@ -127,6 +127,10 @@ namespace tContentPatch
             typePatch.AddPatch(new ModPatch.Patch_Chest());
             typePatch.AddPatch(new ModPatch.Patch_RemoteClient());
             typePatch.AddPatch(new ModPatch.Patch_WorldGen());
+
+            // Chain Collection
+            typePatch.Get<ModPatch.Patch_WorldGen>().Add(new Content.ChainCollection.ChainCollectionWorld());
+            typePatch.Get<ModPatch.Patch_Player>().Add(new Content.ChainCollection.ChainCollectionPlayer());
         }
 
         private void Initialize_ModDirectory()
