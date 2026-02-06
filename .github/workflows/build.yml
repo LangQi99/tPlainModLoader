@@ -1,0 +1,39 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [ "master", "main", "1.4.5" ]
+  pull_request:
+    branches: [ "master", "main", "1.4.5" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore NuGet Packages
+      run: nuget restore tPlainModLoader/tPlainModLoader.sln
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Check for DLLs
+      shell: powershell
+      run: |
+        if (-not (Test-Path "tPlainModLoader/dll/Terraria_v1.4.5.4.exe")) {
+          Write-Warning "Dependencies missing! Please ensure tPlainModLoader/dll/Terraria_v1.4.5.4.exe exists."
+          # Create directory if it doesn't exist to prevent immediate IO errors, 
+          # though compilation will still fail due to missing references.
+          New-Item -ItemType Directory -Force -Path "tPlainModLoader/dll"
+        }
+
+    - name: Build Solution
+      run: msbuild tPlainModLoader/tPlainModLoader.sln /p:Configuration=Release /p:Platform="Any CPU"
